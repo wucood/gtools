@@ -5,6 +5,8 @@
 
 
 # 初始化CentOS
+curl -s https://raw.githubusercontent.com/wucood/gtools/main/conf/version.conf | bash
+curl -s https://raw.githubusercontent.com/wucood/gtools/main/conf/option.conf | bash
 
 # 如果已初始化, 则跳过
 [ ! -s /etc/profile.d/wuhaomiao.sh ] && echo "检测到已初始化, 想重新初始化, 请删除文件: /etc/profile.d/wuhaomiao.sh" && exit
