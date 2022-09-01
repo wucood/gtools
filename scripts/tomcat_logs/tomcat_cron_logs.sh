@@ -14,6 +14,7 @@ function moveLogs(){
     logDir=$LOGS_DIR/$logDirName
     [ -d $logDir ] && mkdir $logDir
     mv $i/logs/* $logDir/
+    touch $i/logs/catalina.out
     zip $logDir/$logDirName_$(date +%Y-%m-%d).zip $logDir/* -x "$logDir/*.zip"
 }
 
