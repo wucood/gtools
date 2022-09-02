@@ -10,7 +10,7 @@ SHELL_DIR=/server/scripts/crontab
 FILE_NAME=tomcat_cron_logs.sh
 
 # 检查是否已安装tomcat日志切割
-[ ! -z $(cat /var/spool/cron/root|grep -Ev '^#'|grep $FILE_NAME )] && { echo 'Tomcat crontab for logs Installed allready!'; exit 1; }
+[ ! -z $(cat /var/spool/cron/root|grep -Ev '^#'|grep $FILE_NAME) ] && { echo 'Tomcat crontab for logs Installed allready!'; exit 1; }
 # 创建脚本存放目录
 [ ! -d $SHELL_DIR ] && mkdir -p $SHELL_DIR
 # 创建脚本文件
