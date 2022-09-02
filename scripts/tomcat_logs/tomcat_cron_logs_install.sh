@@ -19,9 +19,9 @@ wget -O $SHELL_DIR/$FILE_NAME https://raw.githubusercontent.com/wucood/gtools/ma
 
 # 添加定时任务
 if [ echo $? -ne 0 ];then
-    && echo "0 0 * * * bash /server/scripts/crontab/$FILE_NAME > /dev/null 2>&1" >> /var/spool/cron/root
+    echo "0 0 * * * bash /server/scripts/crontab/$FILE_NAME > /dev/null 2>&1" >> /var/spool/cron/root
     echo "tomcat crontab logs Installed success"
 else
     echo "Download crontab shell script Failed, Please try again!"
     exit 1
-
+fi
