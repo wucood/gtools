@@ -10,12 +10,12 @@ SHELL_DIR=/server/scripts/crontab
 FILE_NAME=tomcat_cron_logs.sh
 
 # 检查是否已安装tomcat日志切割
-[ ! -z $(cat /var/spool/cron/root|grep -Ev '^#'|grep $FILE_NAME) ] && { echo 'Tomcat crontab for logs Installed allready!'; exit 1; }
+[ ! -z "$(cat /var/spool/cron/root|grep -Ev '^#'|grep $FILE_NAME)" ] && { echo 'Tomcat crontab for logs Installed allready!'; exit 1; }
 # 创建脚本存放目录
-[ ! -d $SHELL_DIR ] && mkdir -p $SHELL_DIR
+[ ! -d "$SHELL_DIR" ] && mkdir -p $SHELL_DIR
 # 创建脚本文件
-[ -e $SHELL_DIR/$FILE_NAME ] && mv $SHELL_DIR/$FILE_NAME $SHELL_DIR/${FILE_NAME}_bak
-wget –no-check-certificate -O $SHELL_DIR/$FILE_NAME https://raw.githubusercontent.com/wucood/gtools/main/scripts/tomcat_logs/tomcat_cron_logs.sh 
+[ -e "$SHELL_DIR/$FILE_NAME" ] && mv $SHELL_DIR/$FILE_NAME $SHELL_DIR/${FILE_NAME}_bak
+wget -O $SHELL_DIR/$FILE_NAME https://raw.githubusercontent.com/wucood/gtools/main/scripts/tomcat_logs/tomcat_cron_logs.sh --no-check-certificate
 
 # 添加定时任务
 echo "0 0 * * * bash /server/scripts/crontab/$FILE_NAME > /dev/null 2>&1" >> /var/spool/cron/root

@@ -12,7 +12,7 @@ LOGS_DIR=/usr/local/ProgramData/logs
 function moveLogs(){
     logDirName=$(echo $1 | awk -F "/" '{print $5}')
     logDir=$LOGS_DIR/$logDirName
-    [ ! -d $logDir ] && mkdir -p $logDir
+    [ ! -d "$logDir" ] && mkdir -p $logDir
     mv $i/logs/* $logDir/
     touch $i/logs/catalina.out
     zip $logDir/$logDirName_$(date +%Y-%m-%d).zip $logDir/* -x "$logDir/*.zip"
@@ -22,7 +22,7 @@ function moveLogs(){
 function main(){
     for i in $TOMCAT_DIR/tomcat7_*
     do
-        if [ -d $i ]; then
+        if [ -d "$i" ]; then
             moveLogs $i
         fi
     done
