@@ -18,4 +18,10 @@ FILE_NAME=tomcat_cron_logs.sh
 wget -O $SHELL_DIR/$FILE_NAME https://raw.githubusercontent.com/wucood/gtools/main/scripts/tomcat_logs/tomcat_cron_logs.sh --no-check-certificate
 
 # 添加定时任务
-echo "0 0 * * * bash /server/scripts/crontab/$FILE_NAME > /dev/null 2>&1" >> /var/spool/cron/root
+if [ echo $? -ne 0 ];then
+    && echo "0 0 * * * bash /server/scripts/crontab/$FILE_NAME > /dev/null 2>&1" >> /var/spool/cron/root
+    echo "tomcat crontab logs Installed success"
+else
+    echo "Download crontab shell script Failed, Please try again!"
+    exit 1
+
