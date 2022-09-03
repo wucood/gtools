@@ -13,10 +13,11 @@ function moveLogs(){
     logDirName=$(echo $1 | awk -F "/" '{print $5}')
     logDir=$LOGS_DIR/$logDirName
     [ ! -d "$logDir" ] && mkdir -p $logDir
-    cp -r $i/logs/* $logDir/
-    echo "" > $i/logs/catalina.out   # 清空catalina.out日志
-    rm -fr $(ls $i/logs|grep -v "catalina.out")
-    cd $logDir
+    cd $i/logs  # 进入项目logs目录
+    cp -r ./* $logDir/
+    echo "" > catalina.out   # 清空catalina.out日志
+    rm -f $(ls | grep -v "catalina.out")
+    cd $logDir  # 进入日志备份目录
     zip -q ${logDirName}_$(date +%Y-%m-%d).zip $(ls |grep -Ev "*.zip")
     rm -fr $(ls $logDir | grep -Ev "*.zip")
 }
