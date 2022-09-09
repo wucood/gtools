@@ -32,7 +32,7 @@ cmmand -v perl
 [ $? -ne 0 ] && yum install perl perl* -y
 
 function DownloadMySQL(){
-    echo "开始下载安装包..."
+    echo "Start download MySQL."
     [ ! -d "${installTempDir}" ] && mkdir -p ${installTempDir}
     cd ${installTempDir}
     command -v wget
@@ -40,7 +40,7 @@ function DownloadMySQL(){
 
     wget -cq ${mysqlDownloadUrl}
     [ $? -ne 0 ] && { echo "Download MySQL Failed, please check again!"; exit 1; }
-    echo "Download success!"
+    echo "Download MySQL success!"
 }
 
 
@@ -280,4 +280,3 @@ function main(){
 }
 
 main
-
