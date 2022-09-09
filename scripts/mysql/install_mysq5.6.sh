@@ -29,7 +29,7 @@ jemallocDownloadUrl=https://github.com/jemalloc/jemalloc/releases/download/5.3.0
 yum install pcre pcre-devel openssl openssl-devel gcc-c++ ncurses-devel -y
 # docker容器里安装，没有perl，安装perl
 cmmand -v perl
-[ $? -ne 0 ] && yum install perl perl* -y
+[ $? -ne 0 ] && yum install perl autoconf -y
 
 function DownloadMySQL(){
     echo "Start download MySQL."
@@ -79,7 +79,7 @@ function MysqlInstall(){
     # install cmake
     command -v cmake
     if [ $? -ne 0 ]; then
-        echo "Start instatll camke"
+        echo "Start install camke"
         wget -cq ${cmakeDownloadUrl}
         [ $? -ne 0 ] && { echo "Download cmake Failed, please check again!"; exit 1; }
         tar xf ${cmakeVersion}.tar.gz
